@@ -8,15 +8,6 @@ using namespace std;
 #define all(a) (a).begin(),(a).end()
 #define pb push_back
  
-void update(map<ll, ll>& c) {
-	for(auto it = c.begin(); it != c.end(); ) {
-        if(it->second == 0)
-            it = c.erase(it);
-        else
-            ++it;
-    }
-}
- 
 int main() {
  
 	ll t;
@@ -39,7 +30,6 @@ int main() {
 				st.erase(first);
 			}
 			st[a[j]]++;
-			//update(st);
 			mx = min((ll)mx, (ll)st.size());
 			index++;
 			first = a[index];
