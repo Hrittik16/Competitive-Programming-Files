@@ -25,9 +25,13 @@ int main() {
 		sum += a[i];
 		a[i] = (sum >= k);
 	}
+	//repll(i, 90, 101) cout << a[i] << " ";
+	//cout << "\n";
 	repll(i, 1, mx) {
 		a[i] += a[i-1];
 	}
+	//repll(i, 90, 101) cout << a[i] << " ";
+	//cout << "\n";
 	repll(i, 0, q) {
 		cin >> x >> y;
 		cout << a[y]-a[x-1] << "\n";
