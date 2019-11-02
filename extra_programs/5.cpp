@@ -21,5 +21,18 @@ int main() {
 	}
 	for(auto x: dq) cout << x;
 	cout << "\n";
+	
+	/* ***********************************************************
+
+	Better Solution
+
+	string n;
+	cin >> n;
+	string d = n;
+	reverse(all(d));
+	cout << n << d << "\n";
+	
+	*/
+
 	return 0;
 }
