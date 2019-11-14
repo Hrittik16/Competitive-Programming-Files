@@ -1,3 +1,5 @@
+// Problem link : https://www.spoj.com/problems/TOE1/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -8,59 +10,68 @@ using namespace std;
 #define all(a) (a).begin(),(a).end()
 #define pb push_back
 
-bool win(vector<vector<char>>& g, char ch) {
-	// Horizontal
-	if(g[0][0] == g[0][1] == g[0][2] == ch)
-		return 1;
-	if(g[1][0] == g[1][1] == g[1][2] == ch)
-		return 1;
-	if(g[2][0] == g[2][1] == g[2][2] == ch)
-		return 1;
-
-	// Vertical 
-	if(g[0][0] == g[1][0] == g[2][0] == ch)
-		return 1;
-	if(g[1][0] == g[1][1] == g[2][1] == ch)
-		return 1;
-	if(g[2][0] == g[2][1] == g[2][2] == ch)
-		return 1;
-	return 0;
-} 
-
 int main() {
-		
+	
 	int n;
 	cin >> n;
-
-	while(n != 0) {
-		int count_x = 0, count_o = 0;
-		char ch, chr;
-		vector<vector<char>> g(3, vector<char>(3));
+	while(n--) {
+		int count_x = 0, count_o = 0, win_x = 0, win_o = 0, flag = 0;
+		char ch;
+		string s;
 		rep(i, 0, 3) {
 			rep(j, 0, 3) {
-				cin >> g[i][j];
-				if(g[i][j] == 'X') count_x++;
-				else if(g[i][j] == 'O') count_o++;
+				cin >> ch;
+				s += ch;
+				if(ch == 'X') count_x++;
+				else if(ch == 'O') count_o++;
 			}
 		}
-		cin.get(chr);
-		
-		if(count_x-count_o == 0) {
-			if(win(g, 'X') && win(g, 'O')) cout << "no\n";
-			else if(win(g, 'X')) cout << "no\n";
-			else if(win(g, 'O')) cout << "yes\n";
-			else cout << "yes\n";
+		//cout << "s = " << s << "\n";
+		if(s[4] != '.') {	
+			if(s[4] == 'X') {
+				if((s[0] == 'X' && s[8] == 'X') || (s[1] == 'X' && s[7] == 'X') || (s[2] == 'X' && s[6] == 'X') || (s[3] == 'X' && s[5] == 'X'))
+					win_x = 1;
+			}
+			else {
+				if((s[0] == 'O' && s[8] == 'O') || (s[1] == 'O' && s[7] == 'O') || (s[2] == 'O' && s[6] == 'O') || (s[3] == 'O' && s[5] == 'O'))
+					win_o = 1;
+			}
 		}
-		else if(count_x-count_o == 1) {
-			if(win(g, 'X') && win(g, 'O')) cout << "no\n";
-			else if(win(g, 'X')) cout << "yes\n";
-			else if(win(g, 'O')) cout << "no\n";
-			else cout << "yes\n";
+		if(s[0] != '.') {
+			if(s[0] == 'X') {
+				if((s[1] == 'X' && s[2] == 'X') || (s[3] == 'X' && s[6] == 'X'))
+					win_x = 1;
+			}
+			else {
+				if((s[1] == 'O' && s[2] == 'O') || (s[3] == 'O' && s[6] == 'O'))
+					win_o = 1;	
+			}
 		}
-		else
-			cout << "no\n";
+		if(s[8] != '.') {
+			if(s[8] == 'X') {
+				if((s[2] == 'X' && s[5] == 'X') || (s[6] == 'X' && s[7] == 'X'))
+					win_x = 1;
+			}
+			else {
+				if((s[2] == 'O' && s[5] == 'O') || (s[6] == 'O' && s[7] == 'O'))
+					win_o = 1;
+			}
+		}
 
-		n--;
+		if(win_x == 1 && win_o == 1) flag = 1;
+		else {
+			if(win_x == 1 && win_o == 0 && count_x != count_o+1)
+				flag = 1;
+			else if(win_x == 0 && win_o == 1 && count_x != count_o)
+				flag = 1;
+			else if(count_x != count_o+1 && count_x != count_o)
+				flag = 1;
+		}
+		//cout << "win_x = " << win_x << "\n";
+		//cout << "win_o = " << win_o << "\n";
+		if(flag) cout << "no\n";
+		else cout << "yes\n";
+
 	}
 
 
