@@ -1,2 +1,2 @@
-# CODEFORCES-CONTESTS
-This repository contains my submissions for codeforces contests
+# COMPETITIVE-PROGRAMMING-FILES
+This repository contains my submissions for competitive programming questions
