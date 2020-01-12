@@ -8,18 +8,17 @@ using namespace std;
 #define all(a) (a).begin(),(a).end()
 #define pb push_back
 
+void solve() {
+	
+
+
+}
+
 int main() {
-	ll t, a, b, c, d;
-	cin >> t;
-	while(t--) {
-		cin >> a >> b;
-		if(a == b) {
-			cout << "0\n";
-			continue;
-		}
-		ll count = sol(a, b, 0);
-		cout << count << "\n";
-	}
+	ll t;
+	//cin >> t;
+	//while(t--)
+		solve();	
 
 	return 0;
 }
