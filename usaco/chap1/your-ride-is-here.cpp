@@ -23,18 +23,15 @@ int main() {
 		// ctrl+shift+b -> c++-run
 	#endif
 
-	char ch;
 	int val1 = 1, val2 = 1;
-	while(scanf("%c", &ch)) {
-		if(ch == '\n')
-			break;
-		val1 *= (ch-'A')+1;
-	}
-	while(scanf("%c", &ch)) {
-		if(ch == '\n')
-			break;
-		val2 *= (ch-'A')+1;
-	}
+
+	string s1, s2;
+	cin >> s1 >> s2;
+
+	for(auto x: s1)
+		val1 *= (x-'A')+1;
+	for(auto x: s2) 
+		val2 *= (x-'A')+1;
 
 	
 	if(val1%47 == val2%47)
