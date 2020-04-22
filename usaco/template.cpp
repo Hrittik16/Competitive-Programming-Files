@@ -16,11 +16,10 @@ using namespace std;
 #define ONLINE_JUDGE
 
 int main() {
-	
+
 	#ifdef ONLINE_JUDGE
 		freopen("input.in", "r", stdin);
 		freopen("output.out", "w", stdout);	
-		// ctrl+shift+b -> c++-run
 	#endif
 
 
