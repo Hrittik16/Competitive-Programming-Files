@@ -67,9 +67,9 @@ int main() {
 	}
 
 	cout << fre[5] << " " << fre[6] << " ";
-	rep(i, 0, 5)
+	rep(i, 0, 4)
 		cout << fre[i] << " ";
-	cout << "\n";
+	cout << fre[4] << "\n";
 
 	return 0;
 }
