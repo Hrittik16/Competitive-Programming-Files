@@ -14,30 +14,22 @@ int main() {
 		int n;
 		cin >> n;
 		vector<int> a(n);
-		map<int, int> index;
-		vector<int> num;
-		unordered_map<int, int> check;
+		unordered_map<int, int> fre;
 		for (int i = 0; i < n; i++) {
 			cin >> a[i];
-			check[a[i]]++;
-			index[a[i]] = i + 1;
+			fre[a[i]]++;
 		}
 
-		for (auto x : check) {
-			if (x.second == 1)
-				num.push_back(x.first);
+		int index = -1;
+		for (int i = 0; i < n; i++) {
+			if (fre[a[i]] == 1 && (index == -1 || a[index] > a[i]))
+				index = i;
 		}
 
-		if (num.empty())
+		if (index == -1)
 			cout << "-1\n";
-		else {
-			int mx = 1e9;
-			for (int i = 0; i < num.size(); i++) {
-				if (num[i] < mx)
-					mx = num[i];
-			}
-			cout << index[mx] << "\n";
-		}
+		else
+			cout << index + 1 << "\n";
 
 	}
 
