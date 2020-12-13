@@ -3,18 +3,6 @@ using namespace std;
 #define ll long long
 #define pb push_back
 
-bool isPrime(ll n) {
-	vector<char> is_prime(n + 1, true);
-	is_prime[0] = is_prime[1] = false;
-	for (ll i = 2; i <= n; i++) {
-		if (is_prime[i] && i * i <= n) {
-			for (ll j = i * i; j <= n; j += i)
-				is_prime[j] = false;
-		}
-	}
-	return is_prime[n];
-}
-
 int main() {
 
 	ll t;
@@ -22,39 +10,41 @@ int main() {
 	while (t--) {
 		ll n;
 		cin >> n;
-		// cout << "n = " << n << "\n";
+		bool prime = true;
 		vector<ll> divisors;
-		if (isPrime(n)) {
+		if (n == 2 || n == 3) {
 			cout << "1\n";
 			cout << n << "\n";
 			continue;
 		}
-		else if (n % 2 == 0) {
-			while (1) {
-				if (n <= 1) break;
-				if ((n / 2) % 2 != 0) {
-					divisors.pb(n);
+		for (ll i = 2; i <= sqrt(n); i++) {
+			if (n % i == 0) {
+				// cout << "i = " << i << "\n";
+				prime = false;
+				break;
+			}
+		}
+		// cout << "Prime = " << prime << "\n";
+		if (prime) {
+			cout << "1\n";
+			cout << n << "\n";
+			continue;
+		}
+		for (ll i = 2; i <= sqrt(n); i++) {
+			vector<ll> d;
+			ll n_dup = n;
+			while (n_dup % i == 0) {
+				if ((n_dup / i) % i != 0) {
+					d.pb(n_dup);
 					break;
 				}
 				else {
-					divisors.pb(2);
-					n /= 2;
+					d.pb(i);
+					n_dup /= i;
 				}
 			}
-		}
-		else {
-			for (ll i = 3; i <= n / 2; i += 2) {
-				while (n % i == 0) {
-					if ((n / i) % i != 0) {
-						divisors.pb(n);
-						break;
-					}
-					else {
-						divisors.pb(i);
-						n /= i;
-					}
-				}
-			}
+			if (d.size() > divisors.size())
+				divisors = d;
 		}
 
 		cout << divisors.size() << "\n";
