@@ -16,29 +16,21 @@ int main() {
 		cin >> n;
 		string s;
 		cin >> s;
-		ll count = 0, flag = 1, count1 = 0, index1 = 0, count2 = 0, index2 = 0;
-		vector<ll> index;
-		for (ll i = 0; i < s.length() - 1; i++) {
-			if (s[i] == '2' && s[i + 1] == '0') {
-				count++;
-				index.pb(i);
-			}
+
+		if (s[0] == '2' && s[1] == '0' && s[2] == '2' && s[s.length() - 1] == '0') {
+			cout << "YES\n";
 		}
-		sort(all(index));
-		if (count >= 2) {
-			if (index[0] == 0 && index[index.size() - 1] == s.length() - 2)
-				cout << "YES\n";
-			else if (index[0] == 0 && index[index.size() - 1] == 2)
-				cout << "YES\n";
-			else if (index[0] == s.length() - 4 && index[index.size() - 1] == s.length() - 2)
-				cout << "YES\n";
-			else if (s[0] == '2' && s[1] == '0' && s[2] == '2' && s[s.length() - 1] == '0')
-				cout << "YES\n";
-			else if (s[0] == '2' && s[s.length() - 3] == '0' && s[s.length() - 2] == '2' && s[s.length() - 1] == '0')
-				cout << "YES\n";
-			else cout << "NO\n";
+		else if (s[0] == '2' && s[s.length() - 3] == '0' && s[s.length() - 2] == '2' && s[s.length() - 1] == '0') {
+			cout << "YES\n";
 		}
-		else cout << "NO\n";
+		else if (s[0] == '2' && s[1] == '0' && s[2] == '2' && s[3] == '0')
+			cout << "YES\n";
+		else if (s[s.length() - 4] == '2' && s[s.length() - 3] == '0' && s[s.length() - 2] == '2' && s[s.length() - 1] == '0')
+			cout << "YES\n";
+		else if (s[0] == '2' && s[1] == '0' && s[s.length() - 2] == '2' && s[s.length() - 1] == '0')
+			cout << "YES\n";
+		else
+			cout << "NO\n";
 	}
 
 
