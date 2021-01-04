@@ -34,7 +34,29 @@ void start() {
 int32_t main() {
 
 	start();
-
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vi a(n);
+		int total1 = 0, total2 = 0;
+		rep(i, 0, n) {
+			cin >> a[i];
+			if (a[i] == 1) total1++;
+			else total2++;
+		}
+		// cout << total1 << " " << total2 << "\n";
+		if (total1 == 0 && total2 % 2 == 0)
+			cout << "YES\n";
+		else if (total2 == 0 && total1 % 2 == 0)
+			cout << "YES\n";
+		else if (total1 % 2 == 0 && total2 % 2 == 0)
+			cout << "YES\n";
+		else if ((total1 + 2 * total2) % 2 == 0 && (total1 != 0 && total2 != 0))
+			cout << "YES\n";
+		else cout << "NO\n";
+	}
 
 
 

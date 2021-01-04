@@ -31,11 +31,33 @@ void start() {
 #endif
 }
 
+map<int, int> dp;
+
+int calculate(vi& a, int n, int curr) {
+	if (curr >= n) return 0;
+	if (dp.find(curr) != dp.end()) return dp[curr];
+	dp[curr] = a[curr] + calculate(a, n, curr + a[curr]);
+	return dp[curr];
+}
+
 int32_t main() {
 
 	start();
+	int t;
+	cin >> t;
 
-
+	while (t--) {
+		int n;
+		cin >> n;
+		vi a(n);
+		rep(i, 0, n) cin >> a[i];
+		int mx = 0;
+		rep(i, 0, n) {
+			mx = max(mx, calculate(a, n, i));
+		}
+		cout << mx << "\n";
+		dp.clear();
+	}
 
 
 	return 0;

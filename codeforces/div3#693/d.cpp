@@ -34,8 +34,29 @@ void start() {
 int32_t main() {
 
 	start();
-
-
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vi a(n);
+		rep(i, 0, n) cin >> a[i];
+		bool turn = 1;
+		int alice = 0, bob = 0;
+		sort(a.rbegin(), a.rend());
+		rep(i, 0, n) {
+			if (a[i] % 2 == 0 && turn) {
+				alice += a[i];
+			}
+			if (a[i] % 2 != 0 && !turn)
+				bob += a[i];
+			if (turn) turn = 0;
+			else turn = 1;
+		}
+		if (alice == bob) cout << "Tie\n";
+		else if (alice > bob) cout << "Alice\n";
+		else cout << "Bob\n";
+	}
 
 
 	return 0;
