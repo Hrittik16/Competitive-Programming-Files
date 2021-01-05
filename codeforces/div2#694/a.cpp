@@ -43,11 +43,11 @@ int32_t main() {
 		rep(i, 0, n) cin >> a[i];
 		int mx = 0, total = 0;
 		rep(i, 0, n) {
-			mx += ceil((float)a[i] / (float)x);
+			mx += ceil((double)a[i] / (double)x);
 			total += a[i];
 		}
 
-		int mn = ceil((float)total / (float)x);
+		int mn = ceil((double)total / (double)x);
 
 		cout << mn << " " << mx << "\n";
 
