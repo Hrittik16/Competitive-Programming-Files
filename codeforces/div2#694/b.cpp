@@ -31,10 +31,38 @@ void start() {
 #endif
 }
 
-int main() {
+int32_t main() {
 	start();
 
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, x;
+		cin >> n >> x;
+		vi a(n);
+		int total = 0;
+		rep(i, 0, n) {
+			cin >> a[i];
+			total +=  a[i];
+		}
+		int i = 0;
+		int k = x;
+		int count = 0;
+		while (1) {
+			// cout << "a[i]" << a[i] << "\n";
+			if (a[i] % x != 0) break;
+			if (count == n) {
+				k *= x;
+				count = 0;
+			}
+			a.pb((a[i] / x));
+			total += k * (a[i] / x);
+			i++;
+			count++;
+		}
 
+		cout << total << "\n";
+	}
 
 
 

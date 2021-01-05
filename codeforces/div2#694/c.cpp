@@ -31,10 +31,32 @@ void start() {
 #endif
 }
 
-int main() {
+int32_t main() {
 	start();
 
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, m;
+		cin >> n >> m;
+		vi k(n), c(m);
+		rep(i, 0, n) cin >> k[i];
+		rep(i, 0, m) cin >> c[i];
 
+		sort(k.rbegin(), k.rend());
+
+		int curr = 0, total = 0;
+		rep(i, 0, n) {
+			if (c[curr] < c[k[i] - 1]) {
+				total += c[curr];
+				curr++;
+			}
+			else {
+				total += c[k[i] - 1];
+			}
+		}
+		cout << total << "\n";
+	}
 
 
 

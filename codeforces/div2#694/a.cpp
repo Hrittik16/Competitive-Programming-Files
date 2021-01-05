@@ -31,10 +31,27 @@ void start() {
 #endif
 }
 
-int main() {
+int32_t main() {
 	start();
 
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, x;
+		cin >> n >> x;
+		vi a(n);
+		rep(i, 0, n) cin >> a[i];
+		int mx = 0, total = 0;
+		rep(i, 0, n) {
+			mx += ceil((float)a[i] / (float)x);
+			total += a[i];
+		}
 
+		int mn = ceil((float)total / (float)x);
+
+		cout << mn << " " << mx << "\n";
+
+	}
 
 
 
