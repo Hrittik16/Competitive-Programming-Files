@@ -43,18 +43,16 @@ int32_t main() {
 		int total1 = 0, total2 = 0;
 		rep(i, 0, n) {
 			cin >> a[i];
-			if (a[i] == 1) total1++;
-			else total2++;
 		}
-		// cout << total1 << " " << total2 << "\n";
-		if (total1 == 0 && total2 % 2 == 0)
-			cout << "YES\n";
-		else if (total2 == 0 && total1 % 2 == 0)
-			cout << "YES\n";
-		else if (total1 % 2 == 0 && total2 % 2 == 0)
-			cout << "YES\n";
-		else if ((total1 + 2 * total2) % 2 == 0 && (total1 != 0 && total2 != 0))
-			cout << "YES\n";
+
+		sort(all(a));
+
+		for (int i = n - 1; i >= 0; i--) {
+			if (total1 <= total2) total1 += a[i];
+			else total2 += a[i];
+		}
+
+		if (total1 == total2) cout << "YES\n";
 		else cout << "NO\n";
 	}
 
