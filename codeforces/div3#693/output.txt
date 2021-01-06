@@ -1,6 +1,4 @@
-YES
-NO
-YES
-NO
-NO
-YES
+Bob
+Tie
+Alice
+Alice

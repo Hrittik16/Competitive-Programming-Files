@@ -41,20 +41,18 @@ int32_t main() {
 		cin >> n;
 		vi a(n);
 		rep(i, 0, n) cin >> a[i];
-		bool turn = 1;
-		int alice = 0, bob = 0;
+		bool turn = 0;
+		int diff = 0;
 		sort(a.rbegin(), a.rend());
 		rep(i, 0, n) {
-			if (a[i] % 2 == 0 && turn) {
-				alice += a[i];
+			if (turn == (a[i] & 1)) {
+				if (!turn) diff += a[i];
+				else diff -= a[i];
 			}
-			if (a[i] % 2 != 0 && !turn)
-				bob += a[i];
-			if (turn) turn = 0;
-			else turn = 1;
+			turn ^= 1;
 		}
-		if (alice == bob) cout << "Tie\n";
-		else if (alice > bob) cout << "Alice\n";
+		if (diff == 0) cout << "Tie\n";
+		else if (diff > 0) cout << "Alice\n";
 		else cout << "Bob\n";
 	}
 
