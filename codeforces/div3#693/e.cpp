@@ -31,16 +31,8 @@ void start() {
 #endif
 }
 
-bool cmp(const pair<int, int>& a, const pair<int, int>& b) {
-	cout << "a -> ";
-	cout << a.first << " " << a.second << "\n";
-	cout << "b -> ";
-	cout << b.first << " " << b.second << "\n";
-	cout << "result -> ";
-	bool result = (a.first > b.first && a.second > b.second);
-	cout << result << "\n";
-	return (a.first < b.first && a.second < b.second);
-}
+int n;
+vector<pair<pii, int>> a; // {{h, w}, index}
 
 int32_t main() {
 
@@ -48,50 +40,43 @@ int32_t main() {
 	int t;
 	cin >> t;
 	while (t--) {
-		int n;
 		cin >> n;
-		vector<pair<int, int >> m1;
-		vector<pair<int, int>> m2;
-		vector<pair<int, int>> v;
-		map<pair<int, int>, int> index;
+		a.clear();
 		rep(i, 0, n) {
-			int a, b;
-			cin >> a >> b;
-			if (index.find({a, b}) == index.end()) {
-				index[ {a, b}] = i;
-				index[ {b, a}] = i;
-			}
-			v.pb({a, b});
-			m1.pb({a, b});
-			m2.pb({b, a});
+			int h, w;
+			cin >> h >> w;
+			a.pb({{w, -h}, i});
+			a.pb({{h, -w}, i});
 		}
 
-		sort(m1.rbegin(), m1.rend());
-		sort(m2.rbegin(), m2.rend());
+		sort(all(a));
+		// sorted in increasing width and decreasing height(when widths are equal)
+		// eg. vector<pii> a = {{3, -4}, {2, -1}, {3, -3}};
+		// After sorting a = {{2, -1}, {3, -4}, {3, -3}};
+		// Now if 3 would have come before 4 then 4 would consider 3 as a valid option but
+		// since their width are equal 4 cannot consider 3 as height. So, sorting by decreasing
+		// height is important for equal widths
 
+		// for (auto x : a) cout << x.f.f << " " << x.f.s << " " << x.s << "\n";
 
-		for (auto x : m1) cout << x.first << " " << x.second << "\n";
-
-		rep(i, 0, n) {
-			auto it1 = upper_bound(all(m1), make_pair(v[i].first, v[i].second), cmp);
-			cout << "it1.first = " << (*it1).first << " " << "it1.second = " << (*it1).second << "\n";
-			if (it1 != m1.end()) {
-				cout << index[ {(*it1).first, (*it1).second}] + 1 << " ";
-				continue;
-
+		int mn = inf, index_mn = 0;
+		vi ans(n, -1);
+		rep(i, 0, sz(a)) {
+			int w = a[i].f.f;
+			int h = -a[i].f.s;
+			int index = a[i].s;
+			if (h > mn) {
+				ans[index] = index_mn + 1;
 			}
-
-			auto it2 = upper_bound(all(m2), make_pair(v[i].first, v[i].second), cmp);
-			// cout << "it2.first = " << (*it2).first << " " << "it2.second = " << (*it2).second << "\n";
-
-			if (it2 != m2.end()) {
-				cout << index[(*it2)] + 1 << " ";
-				continue;
-
+			else {
+				mn = h;
+				index_mn = index;
 			}
-			cout << "-1 ";
 		}
+
+		for (auto x : ans) cout << x << " ";
 		cout << "\n";
+
 	}
 
 
