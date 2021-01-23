@@ -33,9 +33,27 @@ void start() {
 
 int32_t main() {
 	start();
+	int n;
+	cin >> n;
+	vector<pii> points;
+	rep(i, 0, n) {
+		int a, b;
+		cin >> a >> b;
+		points.pb({a, b});
+	}
+	int count = 0;
+	rep(i, 0, n) {
+		rep(j, i + 1, n) {
+			auto it1 = points[i];
+			auto it2 = points[j];
+			int yy = it2.s - it1.s;
+			int xx = it2.f - it1.f;
+			double m = (double)yy / (double)xx;
+			if (m >= -1 && m <= 1) count++;
+		}
+	}
 
-
-
+	cout << count << "\n";
 
 	return 0;
 }
