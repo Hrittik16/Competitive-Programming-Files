@@ -57,25 +57,6 @@ int32_t main() {
 		rep(i, 1, k + 1) {
 			a.pb(i);
 		}
-		int val = 0;
-		if (k != n) {
-			val = n - k;
-		}
-		int temp = k - 1;
-		while (val != 0) {
-			a.pb(abs(temp));
-			temp--;
-			val--;
-		}
-
-		// for (auto x : a) cout << x << " ";
-		// cout << "\n";
-
-		// int inv = count_inv(a);
-
-		// cout << "inv = " << inv << "\n";
-
-
 
 		if (k == n) {
 			rep(i, 1, k + 1) cout << i << " ";

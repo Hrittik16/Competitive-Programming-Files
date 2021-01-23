@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define int 				long long
+#define int 				long long
 #define f 					first
 #define s 					second
 #define pb 					push_back
@@ -31,54 +31,27 @@ void start() {
 #endif
 }
 
-bool checkk(vector<vector<int>>& a, int x, int y, int n, int m) {
-	bool flag = 1;
-
-	rep(i, 0, n) {
-		if (x == n - 1 || y == m - 1) break;
-		if (a[x][y] != a[x + 1][y + 1]) {
-			flag = 0;
-			break;
-		}
-		x++;
-		y++;
-	}
-	return flag;
-}
-
-int main() {
-	// start();
+int32_t main() {
+	start();
 
 	int t;
 	cin >> t;
-	// cout << "#\n";
 	while (t--) {
-		int n, m;
-		cin >> n >> m;
-		// cout << "#\n";
-		vector<vector<int>> a(n);
+		int n;
+		cin >> n;
+		string a, b;
+		cin >> a >> b;
+		int red = 0, blue = 0;
 		rep(i, 0, n) {
-			rep(j, 0, m) {
-				int p;
-				cin >> p;
-				a[i].pb(p);
-			}
+			if (a[i] - '0' > b[i] - '0') red++;
+			else if (b[i] - '0' > a[i] - '0') blue++;
 		}
-		// cout << "#\n";
-		int q;
-		cin >> q;
-		vector<int> fre(m + 7, 0);
 
-		while (q--) {
-			// cout << "#\n";
-			int x, y, v;
-			cin >> x >> y >> v;
-			a[--x][--y] = v;
-			fre[abs(x - y)]++;
-			if (fre[abs(x - y)] == abs(abs(x - y) - m) + 1) cout << "Yes\n";
-			else cout << "No\n";
-		}
+		if (red == blue) cout << "EQUAL\n";
+		else if (red > blue) cout << "RED\n";
+		else cout << "BLUE\n";
 	}
+
 
 
 
