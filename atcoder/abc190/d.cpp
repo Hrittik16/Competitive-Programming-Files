@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int 				long long
+#define int 				long long int
 #define f 					first
 #define s 					second
 #define pb 					push_back
@@ -24,9 +24,15 @@ using namespace std;
 
 int32_t main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int n;
+	cin >> n;
+	int count = 0;
+	for (int i = 2; (i * (i + 1)) / 2 <= n; i++) {
+		int sum = (i * (i + 1)) / 2;
+		if ((n - sum) % i == 0) count++;
+	}
 
-
-
+	cout << 2 * (count + 1) << "\n";
 
 	return 0;
 }
