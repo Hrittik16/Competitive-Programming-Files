@@ -34,42 +34,12 @@ int32_t main() {
 		cin >> x >> y;
 		string s;
 		cin >> s;
-		int up = 0, down = 0, right = 0, left = 0;
-		for (auto x : s) {
-			if (x == 'R') right++;
-			if (x == 'L') left++;
-			if (x == 'U') up++;
-			if (x == 'D') down++;
-		}
-		if (x < 0) {
-			if (left >= abs(x)) {
-				if (y < 0) {
-					if (down >= abs(y)) cout << "YES\n";
-					else cout << "NO\n";
-				}
-				else {
-					if (up >= y) cout << "YES\n";
-					else cout << "NO\n";
-				}
-			}
-			else cout << "NO\n";
-		}
-		else {
-			if (right >= x) {
-				if (y < 0) {
-					if (down >= abs(y)) cout << "YES\n";
-					else cout << "NO\n";
-				}
-				else {
-					if (up >= y) cout << "YES\n";
-					else cout << "NO\n";
-				}
-			}
-			else cout << "NO\n";
-		}
+		vi fre(128, 0);
+		for (auto &x : s) fre[x]++;
+		if (-fre['L'] <= x && x <= fre['R'] && -fre['D'] <= y && y <= fre['U'])
+			cout << "YES\n";
+		else cout << "NO\n";
 	}
-
-
 
 	return 0;
 }

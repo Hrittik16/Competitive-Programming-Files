@@ -24,71 +24,60 @@ using namespace std;
 #define char_to_int(x)		x-'0'
 #define int_to_char(x)		x+'0'
 
+void solve() {
+	int n, m;
+	cin >> n >> m;
+	vi a(n), b(n), c(m), req(n + 1), mxreq(n + 1), avail(n + 1);
+	vi index[n + 1], last(n + 1);
+	rep(i, 0, n) cin >> a[i];
+	rep(i, 0, n) {
+		cin >> b[i];
+		if (a[i] != b[i]) req[b[i]]++, index[b[i]].pb(i);
+		mxreq[b[i]]++;
+		last[b[i]] = i;
+	}
+	rep(i, 0, m) {
+		cin >> c[i];
+		avail[c[i]]++;
+	}
+
+	rep(i, 1, n + 1) {
+		if (avail[i] < req[i]) {
+			cout << "NO\n";
+			return;
+		}
+	}
+
+	if (mxreq[c[m - 1]] == 0) {
+		cout << "NO\n";
+		return;
+	}
+
+	cout << "YES\n";
+
+	int same;
+
+	if (index[c[m - 1]].empty()) same = last[c[m - 1]];
+	else same = index[c[m - 1]][0];
+
+	rep(i, 0, m) {
+		if (index[c[i]].empty()) cout << same + 1 << " ";
+		else {
+			cout << index[c[i]].back() + 1 << " ";
+			index[c[i]].pop_back();
+		}
+	}
+	cout << "\n";
+}
+
 int32_t main() {
 	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 	int t;
 	cin >> t;
 	while (t--) {
-		int n, m;
-		cin >> n >> m;
-		vi a(n), b(n), c(m);
-		map<int, int> count3, pos;
-		rep(i, 0, n) cin >> a[i];
-		rep(i, 0, n) cin >> b[i];
-		rep(i, 0, m) cin >> c[i];
-		rep(i, 0, n) {
-			pos[a[i]] = i;
-		}
-		rep(i, 0, m) count3[c[i]]++;
-		bool flag = 1;
-		map<int, vi> pos2;
-		rep(i, 0, n) {
-			if (a[i] != b[i]) {
-				if (count3[b[i]] > 0) {
-					count3[b[i]]--;
-					pos2[b[i]].pb(i);
-					if (pos.find(b[i]) == pos.end()) pos[b[i]] = i;
-				}
-				else {
-					flag = 0;
-					break;
-				}
-			}
-		}
-
-		//cout << "flag = " << flag << "\n";
-
-		if (flag) {
-			vi p;
-			rep(i, 0, m) {
-				if (i == 2 && count3.find(c[i]) != count3.end()) cout << "##\n";
-				if (i == 2) cout << count3[c[i]] << "\n";
-				if (count3.find(c[i]) != count3.end() && count3[c[i]] == 0) {
-					if (i == 2) cout << "#\n";
-					p.pb(pos2[c[i]].back());
-					pos2[c[i]].pop_back();
-				}
-				else {
-					if (pos.find(c[i]) == pos.end()) {
-						if (i == 2) cout << "###\n";
-						flag = 0;
-						break;
-					}
-					p.pb(pos[c[i]]);
-				}
-			}
-			if (flag) {
-				cout << "YES\n";
-				for (auto x : p) cout << x + 1 << " ";
-				cout << "\n";
-			}
-			else cout << "NO\n";
-		}
-		else cout << "NO\n";
-
+		solve();
 	}
-
 
 	return 0;
 }
