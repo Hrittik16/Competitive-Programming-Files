@@ -11,7 +11,17 @@ using namespace std;
 
 int32_t main() {
 
+	int t;
+	cin >> t;
+	while(t--) {
+		int a, b, m;
+		cin >> a >> b >> m;
 
+		int x = (a+m)/a;
+		int y = (b+m)/b;
+
+		cout << x+y << "\n";
+	}
 
 
 	return 0;
